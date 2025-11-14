@@ -1,9 +1,12 @@
 #include "ext_nm.h"
+static bool checked[MAX];
+static board boards_list[BIGSIZE];
 
 bool solve(int seed){
-   static board boards_list[BIGSIZE];
+   memset(checked, 0, sizeof(checked));
    int f=0, c=0;
    boards_list[f] = randfill(seed);
+   checked[boards_list[f].overview] = true;
    while(f<=c){
       if(is_final(&boards_list[f])){
          return true;
@@ -27,7 +30,7 @@ bool solve(int seed){
                            z.y2 = j2;
                            board tmp = boards_list[f];
                            if(take(&tmp, z)){
-                              if(is_unique(tmp, boards_list,f,c)){
+                              if(is_unique(&tmp)){
                                  if (c + 1 >= BIGSIZE) {
                                     return false;
                                  }
@@ -79,8 +82,6 @@ board randfill(int n){
 
 void test(void){
    board b = randfill(17);
-   board init1 = b;
-   board init2 = b;
    //85995
    //92193
    //57647
@@ -104,8 +105,7 @@ void test(void){
    assert(!is_connected(&b, (pair){1,3,3,0}));
    
    //is a duplicate? ignore it
-   assert(is_unique(init1, &b, 0, 0));
-   assert(!is_unique(init1, &init2, 0, 0));
+   assert(is_unique(&b));
 
    //is the ‘final’ board? stop
    assert(!is_final(&b));
@@ -179,13 +179,23 @@ bool is_connected(board* p, pair z){
    return false;
 }
 
-bool is_unique(board tmp, board* p, int start, int end){
+//an attempt
+/*bool is_unique(board tmp, board* p, int start, int end){
    for(int n = start; n <= end; n++){
       if(tmp.overview == p[n].overview){
          return false;
       }
    }
 
+   return true;
+}*/
+
+bool is_unique(const board *tmp){
+   int n = tmp->overview;
+   if(checked[n]){
+      return false;
+   }
+   checked[n] = true;
    return true;
 }
 
