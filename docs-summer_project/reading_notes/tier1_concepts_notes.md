@@ -1,6 +1,4 @@
-# Tier-1 精读笔记：RAG faithfulness / knowledge conflict 四篇
-
-（面向 IBM Granite NIAH 项目 + CorroborationReranker；术语保留英文）
+# Tier-1 笔记：RAG faithfulness / knowledge conflict 四篇
 
 ---
 
