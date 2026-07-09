@@ -1,10 +1,5 @@
 # Literature Review Briefing
 
-**Project context:** CorroborationReranker — moving cross-source consistency signals from the generation stage to the reranking stage, evaluated with a NIAH counterfactual task (retrieval-side metrics) plus SciFact (generation-side metrics).
-
-**Papers covered:** #5 Correctness ≠ Faithfulness · #19 Astute RAG · #7 G-Cite vs P-Cite · #20 ClashEval · #4 ALCE
-*(All claims below verified against the original papers, not AI-generated summaries.)*
-
 ---
 
 ## The narrative chain (one paragraph)
