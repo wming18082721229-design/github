@@ -5,7 +5,7 @@
 
 ---
 
-## 0. TL;DR（三句话版本）
+## 0. TL;DR
 
 1. **我们的定位站得住**：文献证明 citation 会被 post-rationalize（高达 57% 不忠实，#5），且检索质量是归因质量的主驱动（FEVER 上加 RAG 使 citation correctness 27%→77%，#7）——「把 faithfulness 防御做在检索/重排侧」这个空位目前没有人占。
 2. **实现路径已抠清**：ALCE citation P/R 用 `google/t5_xxl_true_nli_mixture` 逐句判定（#4）；masking-and-recovery 用 LLM annotator 而非 NLI（GPT-4 α=0.65 vs NLI 0.29–0.34，#18）；calibrated parametric vote 照 ClashEval 的 percentile 校准配方（accuracy 0.615→0.754，#20）。
@@ -13,7 +13,7 @@
 
 ---
 
-## 1. 项目回顾（30 秒）
+## 1. 项目回顾
 
 - **三条检索臂**：BM25（经典稀疏）+ SPLADE（学习型稀疏，词权重天生可解释）+ Granite dense（`granite-embedding-english-r2`），调优 convex 融合（α = dense 权重；RRF 已被淘汰）。
 - **核心创新 CorroborationReranker**：对 top-20 候选，LLM 逐段抽取最短答案 + 一票 parametric answer；corroboration = 给出相同答案的其他来源数；`final = α·relevance + (1−α)·corroboration`。
@@ -21,7 +21,7 @@
 
 ---
 
-## 2. 核心词汇表（来自三篇 survey，写作与答辩通用）
+## 2. 词汇表
 
 | 概念对 | 含义 | 出处 |
 |---|---|---|
@@ -34,7 +34,7 @@
 
 ---
 
-## 3. Tier 1 精读 · 第一组：概念与立论（#5 / #19 / #20 / #7）
+## 3. Tier 1 · 第一组：概念与立论（#5 / #19 / #20 / #7）
 
 ### #5 Correctness is not Faithfulness in RAG Attributions（Wallat et al., 2024）
 
@@ -74,7 +74,7 @@
 
 ---
 
-## 4. Tier 1 精读 · 第二组：实现依据（#4 / #18 / #14 / #16）
+## 4. Tier 1 · 第二组：实现依据（#4 / #18 / #14 / #16）
 
 ### #4 ALCE（Gao et al., 2023, EMNLP）—— citation P/R 的照抄对象
 
@@ -122,7 +122,7 @@
 
 ---
 
-## 5. Tier 2 扫读（#9 / #10 / #13 / #8）
+## 5. Tier 2（#9 / #10 / #13 / #8）
 
 | # | 论文 | 定位 | 核心机制 | 对我们的直接用途 | 最硬的数字 |
 |---|---|---|---|---|---|
@@ -133,7 +133,7 @@
 
 ---
 
-## 6. Tier 3 索引（8 篇，一行制）
+## 6. Tier 3 索引
 
 | # | 论文 | 一句话价值 |
 |---|---|---|
