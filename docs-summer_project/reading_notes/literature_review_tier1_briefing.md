@@ -1,4 +1,4 @@
-# Literature Review Briefing — Tier-1 Core Papers
+# Literature Review Briefing
 
 **Project context:** CorroborationReranker — moving cross-source consistency signals from the generation stage to the reranking stage, evaluated with a NIAH counterfactual task (retrieval-side metrics) plus SciFact (generation-side metrics).
 
